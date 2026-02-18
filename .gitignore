@@ -7,5 +7,5 @@
 !.gitignore
 !README.md
 !Makefile
-!.patch
+!*.patch
 # Tokeny i wrażliwe dane
