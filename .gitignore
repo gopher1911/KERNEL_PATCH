@@ -4,7 +4,6 @@
 # ALE dozwól te typy:
 !*.c
 !*.h
-!.gitignore
 !README.md
 !Makefile
 !*.patch
