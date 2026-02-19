@@ -1,0 +1,28 @@
+From c86baae0efc038f3416b0adf33b4d19901507a07 Mon Sep 17 00:00:00 2001
+From: Tomasz Unger <tomasz.unger@yahoo.pl>
+Date: Thu, 19 Feb 2026 20:09:46 +0100
+Subject: [PATCH] nfc: pn544: i2c: Fix spelling mistake in comment
+
+'occured' -> 'occurred'
+
+Signed-off-by: Tomasz Unger <tomasz.unger@yahoo.pl>
+---
+ drivers/nfc/pn544/i2c.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/drivers/nfc/pn544/i2c.c b/drivers/nfc/pn544/i2c.c
+index a0dfb3f98d5a..1ecef0acaa50 100644
+--- a/drivers/nfc/pn544/i2c.c
++++ b/drivers/nfc/pn544/i2c.c
+@@ -171,7 +171,7 @@ struct pn544_i2c_phy {
+ 	int run_mode;
+ 
+ 	int hard_fault;		/*
+-				 * < 0 if hardware error occured (e.g. i2c err)
++				 * < 0 if hardware error occurred (e.g. i2c err)
+ 				 * and prevents normal operation.
+ 				 */
+ };
+-- 
+2.53.0
+
