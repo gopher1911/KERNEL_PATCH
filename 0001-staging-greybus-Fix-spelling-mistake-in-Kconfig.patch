@@ -1,0 +1,30 @@
+From 1ab0842c6c65faa66fc8e4a13a6354f7e95fed8e Mon Sep 17 00:00:00 2001
+From: Tomasz Unger <tomasz.unger@yahoo.pl>
+Date: Sat, 21 Feb 2026 12:00:09 +0100
+Subject: [PATCH] staging: greybus: Fix spelling mistake in Kconfig
+
+Replace 'busses' with 'buses' in help text.
+
+Found using codespell.
+
+Signed-off-by: Tomasz Unger <tomasz.unger@yahoo.pl>
+---
+ drivers/staging/greybus/Kconfig | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/drivers/staging/greybus/Kconfig b/drivers/staging/greybus/Kconfig
+index 1e745a8d439c..7635f3e850fa 100644
+--- a/drivers/staging/greybus/Kconfig
++++ b/drivers/staging/greybus/Kconfig
+@@ -123,7 +123,7 @@ menuconfig GREYBUS_BRIDGED_PHY
+ 	help
+ 	  Select this option to pick from a variety of Greybus Bridged
+ 	  PHY class drivers.  These drivers emulate a number of
+-	  different "traditional" busses by tunneling them over Greybus.
++	  different "traditional" buses by tunneling them over Greybus.
+ 	  Examples of this include serial, SPI, USB, and others.
+ 
+ 	  To compile this code as a module, chose M here: the module
+-- 
+2.53.0
+
