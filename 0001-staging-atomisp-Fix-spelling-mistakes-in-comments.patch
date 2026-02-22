@@ -1,0 +1,130 @@
+From af6843c90b0378451eb3f05f06930d91049086a3 Mon Sep 17 00:00:00 2001
+From: Tomasz Unger <tomasz.unger@yahoo.pl>
+Date: Sun, 22 Feb 2026 13:56:52 +0100
+Subject: [PATCH] staging: atomisp: Fix spelling mistakes in comments
+
+Fix various spelling mistakes found by codespell:
+ - aviod => avoid
+ - corrent => correct
+ - stablization => stabilization
+ - addtional => additional
+ - facor => factor
+ - steams => streams
+
+Signed-off-by: Tomasz Unger <tomasz.unger@yahoo.pl>
+---
+ drivers/staging/media/atomisp/pci/atomisp_cmd.c          | 8 ++++----
+ drivers/staging/media/atomisp/pci/atomisp_cmd.h          | 2 +-
+ drivers/staging/media/atomisp/pci/atomisp_compat_css20.c | 8 ++++----
+ drivers/staging/media/atomisp/pci/atomisp_compat_css20.h | 2 +-
+ 4 files changed, 10 insertions(+), 10 deletions(-)
+
+diff --git a/drivers/staging/media/atomisp/pci/atomisp_cmd.c b/drivers/staging/media/atomisp/pci/atomisp_cmd.c
+index fec369575d88..5e5f3fe1ba7d 100644
+--- a/drivers/staging/media/atomisp/pci/atomisp_cmd.c
++++ b/drivers/staging/media/atomisp/pci/atomisp_cmd.c
+@@ -811,7 +811,7 @@ void atomisp_buf_done(struct atomisp_sub_device *asd, int error,
+ 			/* New global dvs 6axis config should be blocked
+ 			 * here if there's a buffer with per-frame parameters
+ 			 * pending in CSS frame buffer queue.
+-			 * This is to aviod zooming vibration since global
++			 * This is to avoid zooming vibration since global
+ 			 * parameters take effect immediately while
+ 			 * per-frame parameters are taken after previous
+ 			 * buffers in CSS got processed.
+@@ -974,7 +974,7 @@ irqreturn_t atomisp_isr_thread(int irq, void *isp_ptr)
+ 	 * to a FIFO, then process the event in the FIFO.
+ 	 * This will not have issue in single stream mode, but it do have some
+ 	 * issue in multiple stream case. The issue is that
+-	 * ia_css_pipe_dequeue_buffer() will not return the corrent buffer in
++	 * ia_css_pipe_dequeue_buffer() will not return the correct buffer in
+ 	 * a specific pipe.
+ 	 *
+ 	 * This is due to ia_css_pipe_dequeue_buffer() does not take the
+@@ -1575,7 +1575,7 @@ int atomisp_set_dis_vector(struct atomisp_sub_device *asd,
+ }
+ 
+ /*
+- * Function to set/get image stablization statistics
++ * Function to set/get image stabilization statistics
+  */
+ int atomisp_get_dis_stat(struct atomisp_sub_device *asd,
+ 			 struct atomisp_dis_statistics *stats)
+@@ -3232,7 +3232,7 @@ int atomisp_bad_pixel_param(struct atomisp_sub_device *asd, int flag,
+ }
+ 
+ /*
+- * Function to enable/disable video image stablization
++ * Function to enable/disable video image stabilization
+  */
+ int atomisp_video_stable(struct atomisp_sub_device *asd, int flag,
+ 			 __s32 *value)
+diff --git a/drivers/staging/media/atomisp/pci/atomisp_cmd.h b/drivers/staging/media/atomisp/pci/atomisp_cmd.h
+index 82199dc9284e..d3d1f2574e77 100644
+--- a/drivers/staging/media/atomisp/pci/atomisp_cmd.h
++++ b/drivers/staging/media/atomisp/pci/atomisp_cmd.h
+@@ -153,7 +153,7 @@ int atomisp_bad_pixel(struct atomisp_sub_device *asd, int flag,
+ int atomisp_bad_pixel_param(struct atomisp_sub_device *asd, int flag,
+ 			    struct atomisp_dp_config *config);
+ 
+-/* Function to enable/disable video image stablization */
++/* Function to enable/disable video image stabilization */
+ int atomisp_video_stable(struct atomisp_sub_device *asd, int flag,
+ 			 __s32 *value);
+ 
+diff --git a/drivers/staging/media/atomisp/pci/atomisp_compat_css20.c b/drivers/staging/media/atomisp/pci/atomisp_compat_css20.c
+index be5f37f4a6fd..c30501a36f86 100644
+--- a/drivers/staging/media/atomisp/pci/atomisp_compat_css20.c
++++ b/drivers/staging/media/atomisp/pci/atomisp_compat_css20.c
+@@ -1957,7 +1957,7 @@ static void __configure_capture_pp_input(struct atomisp_sub_device *asd,
+ 
+ /*
+  * For CSS2.1, preview pipe could support bayer downscaling, yuv decimation and
+- * yuv downscaling, which needs addtional configurations.
++ * yuv downscaling, which needs additional configurations.
+  */
+ static void __configure_preview_pp_input(struct atomisp_sub_device *asd,
+ 	unsigned int width, unsigned int height,
+@@ -2044,7 +2044,7 @@ static void __configure_preview_pp_input(struct atomisp_sub_device *asd,
+ 		}
+ 	}
+ 	/*
+-	 * calculate YUV Decimation, YUV downscaling facor:
++	 * calculate YUV Decimation, YUV downscaling factor:
+ 	 * YUV Downscaling factor must not exceed 2.
+ 	 * YUV Decimation factor could be 2, 4.
+ 	 */
+@@ -2085,7 +2085,7 @@ static void __configure_preview_pp_input(struct atomisp_sub_device *asd,
+ 
+ /*
+  * For CSS2.1, offline video pipe could support bayer decimation, and
+- * yuv downscaling, which needs addtional configurations.
++ * yuv downscaling, which needs additional configurations.
+  */
+ static void __configure_video_pp_input(struct atomisp_sub_device *asd,
+ 				       unsigned int width, unsigned int height,
+@@ -3002,7 +3002,7 @@ int atomisp_css_get_zoom_factor(struct atomisp_sub_device *asd,
+ }
+ 
+ /*
+- * Function to set/get image stablization statistics
++ * Function to set/get image stabilization statistics
+  */
+ int atomisp_css_get_dis_stat(struct atomisp_sub_device *asd,
+ 			     struct atomisp_dis_statistics *stats)
+diff --git a/drivers/staging/media/atomisp/pci/atomisp_compat_css20.h b/drivers/staging/media/atomisp/pci/atomisp_compat_css20.h
+index 75781807544a..5188df4f469c 100644
+--- a/drivers/staging/media/atomisp/pci/atomisp_compat_css20.h
++++ b/drivers/staging/media/atomisp/pci/atomisp_compat_css20.h
+@@ -40,7 +40,7 @@ enum atomisp_css_stream_state {
+ };
+ 
+ /*
+- *  Sensor of external ISP can send multiple steams with different mipi data
++ *  Sensor of external ISP can send multiple streams with different mipi data
+  * type in the same virtual channel. This information needs to come from the
+  * sensor or external ISP
+  */
+-- 
+2.53.0
+
