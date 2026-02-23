@@ -10,3 +10,7 @@
 # Tokeny i wrażliwe dane
 !ACCEPTED/
 !ACCEPTED/*
+!WAITING/
+!WAITING/*
+!REJECTED/
+!REJECTED/*
