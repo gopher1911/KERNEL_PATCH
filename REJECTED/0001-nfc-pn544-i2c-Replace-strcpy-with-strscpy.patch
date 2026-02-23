@@ -1,0 +1,31 @@
+From 026120a2b116383b629fccef35abac49467ccefb Mon Sep 17 00:00:00 2001
+From: Tomasz Unger <tomasz.unger@yahoo.pl>
+Date: Thu, 19 Feb 2026 20:22:40 +0100
+Subject: [PATCH] nfc: pn544: i2c: Replace strcpy() with strscpy()
+
+strcpy() does not limit the number of bytes copied which can lead to
+buffer overflow. Replace with strscpy() which is safer as it limits
+the copy to the size of the destination buffer.
+
+Signed-off-by: Tomasz Unger <tomasz.unger@yahoo.pl>
+---
+ drivers/nfc/pn544/i2c.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/drivers/nfc/pn544/i2c.c b/drivers/nfc/pn544/i2c.c
+index 1ecef0acaa50..b897357732fa 100644
+--- a/drivers/nfc/pn544/i2c.c
++++ b/drivers/nfc/pn544/i2c.c
+@@ -526,7 +526,7 @@ static int pn544_hci_i2c_fw_download(void *phy_id, const char *firmware_name,
+ 
+ 	pr_info("Starting Firmware Download (%s)\n", firmware_name);
+ 
+-	strcpy(phy->firmware_name, firmware_name);
++	strscpy(phy->firmware_name, firmware_name, sizeof(phy->firmware_name));
+ 
+ 	phy->hw_variant = hw_variant;
+ 	phy->fw_work_state = FW_WORK_STATE_START;
+-- 
+2.53.0
+
+
