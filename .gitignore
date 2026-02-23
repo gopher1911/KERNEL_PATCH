@@ -8,3 +8,5 @@
 !Makefile
 !*.patch
 # Tokeny i wrażliwe dane
+!ACCEPTED/
+!ACCEPTED/*
