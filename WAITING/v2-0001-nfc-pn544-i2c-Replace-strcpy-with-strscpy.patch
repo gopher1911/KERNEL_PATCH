@@ -1,0 +1,45 @@
+From 39f57321bbaaadfdb9385b111b161765b78f1e1b Mon Sep 17 00:00:00 2001
+From: Tomasz Unger <tomasz.unger@yahoo.pl>
+Date: Tue, 24 Feb 2026 07:50:19 +0100
+Subject: [PATCH v2] nfc: pn544: i2c: Replace strcpy() with strscpy()
+
+strcpy() does not limit the number of bytes copied which can lead to
+buffer overflow when firmware_name is derived from user input via
+NFC subsystem. This is a bug fix, not a cleanup.
+
+Replace with strscpy() which limits the copy to the size of the
+destination buffer. Since phy->firmware_name is an array, the
+two-argument variant of strscpy() is used - the compiler deduces
+the buffer size automatically.
+
+Fixes: 06c660340f1e ("NFC: pn544: i2c: Add firmware download implementation for pn544")
+Signed-off-by: Tomasz Unger <tomasz.unger@yahoo.pl>
+---
+Changes since v1 (requested by Simon Horman <horms@kernel.org>):
+- Use two-argument strscpy() since phy->firmware_name is an array
+    
+Testing:
+- checkpatch.pl: 0 errors, 0 warnings
+- make drivers/nfc/pn544/: compiled successfully, 0 errors, 0 warnings
+- Module loaded successfully in QEMU (x86_64) with buildroot:
+  insmod pn544.ko - no errors, confirmed via lsmod
+
+ drivers/nfc/pn544/i2c.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/drivers/nfc/pn544/i2c.c b/drivers/nfc/pn544/i2c.c
+index a0dfb3f98d5a..b31b5bef7187 100644
+--- a/drivers/nfc/pn544/i2c.c
++++ b/drivers/nfc/pn544/i2c.c
+@@ -526,7 +526,7 @@ static int pn544_hci_i2c_fw_download(void *phy_id, const char *firmware_name,
+ 
+ 	pr_info("Starting Firmware Download (%s)\n", firmware_name);
+ 
+-	strcpy(phy->firmware_name, firmware_name);
++	strscpy(phy->firmware_name, firmware_name);
+ 
+ 	phy->hw_variant = hw_variant;
+ 	phy->fw_work_state = FW_WORK_STATE_START;
+-- 
+2.53.0
+
