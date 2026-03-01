@@ -1,0 +1,47 @@
+From bf8469af0f0b50aeb656738395505277cc1575ad Mon Sep 17 00:00:00 2001
+From: Tomasz Unger <tomasz.unger@yahoo.pl>
+Date: Sun, 1 Mar 2026 12:56:44 +0100
+Subject: [PATCH net-next v4] NFC: pn544: i2c: Replace strcpy() with strscpy()
+
+Replace strcpy() with strscpy() which limits the copy to the size of
+the destination buffer. Since phy->firmware_name is an array, the
+two-argument variant of strscpy() is used - the compiler deduces
+the buffer size automatically.
+
+This is a defensive cleanup. As pointed out by Jakub Kicinski
+<kuba@kernel.org>, firmware_name is already bounded to
+NFC_FIRMWARE_NAME_MAXSIZE via nla_strscpy() in net/nfc/netlink.c
+before reaching this driver, so no actual buffer overflow is possible.
+
+Signed-off-by: Tomasz Unger <tomasz.unger@yahoo.pl>
+---
+Changes since v3:
+- Reworded commit message: removed "bug fix" and "buffer overflow"
+  language as pointed out by Jakub Kicinski <kuba@kernel.org>;
+  firmware_name is already bounded via nla_strscpy() in netlink.c
+- Changed submission target from net to net-next (cleanup, not a fix)
+
+Testing:
+- checkpatch.pl: 0 errors, 0 warnings
+- make M=drivers/nfc/pn544/: compiled successfully, 0 errors, 0 warnings
+
+ drivers/nfc/pn544/i2c.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/drivers/nfc/pn544/i2c.c b/drivers/nfc/pn544/i2c.c
+index a0dfb3f98d5a..b31b5bef7187 100644
+--- a/drivers/nfc/pn544/i2c.c
++++ b/drivers/nfc/pn544/i2c.c
+@@ -526,7 +526,7 @@ static int pn544_hci_i2c_fw_download(void *phy_id, const char *firmware_name,
+ 
+ 	pr_info("Starting Firmware Download (%s)\n", firmware_name);
+ 
+-	strcpy(phy->firmware_name, firmware_name);
++	strscpy(phy->firmware_name, firmware_name);
+ 
+ 	phy->hw_variant = hw_variant;
+ 	phy->fw_work_state = FW_WORK_STATE_START;
+
+-- 
+2.53.0
+
