@@ -1,0 +1,44 @@
+From bf877cc8c9e75ea085db93554a45c79b6c7aee58 Mon Sep 17 00:00:00 2001
+From: Tomasz Unger <tomasz.unger@yahoo.pl>
+Date: Wed, 04 Mar 2026 09:44:26 +0100
+Subject: [PATCH v2] staging: rtl8723bs: Fix spelling mistake in comment
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20260304-rtl8723bs-fix-spelling-v2-1-af0c86f29e8f@yahoo.pl>
+X-Change-ID: 20260304-rtl8723bs-fix-spelling-f4601b3ef5c3
+
+Fix typo 'termindate' -> 'terminate' in a comment.
+Found with codespell. No other occurrences in this file.
+
+Signed-off-by: Tomasz Unger <tomasz.unger@yahoo.pl>
+---
+Changes in v2:
+- EDITME: describe what is new in this series revision.
+- EDITME: use bulletpoints and terse descriptions.
+- Link to v1: https://lore.kernel.org/r/20260304-rtl8723bs-fix-spelling-v1-1-e2bcc89d5311@yahoo.pl
+---
+ drivers/staging/rtl8723bs/os_dep/os_intfs.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/drivers/staging/rtl8723bs/os_dep/os_intfs.c b/drivers/staging/rtl8723bs/os_dep/os_intfs.c
+index 29939bf5a156..c2cf5f11bc3c 100644
+--- a/drivers/staging/rtl8723bs/os_dep/os_intfs.c
++++ b/drivers/staging/rtl8723bs/os_dep/os_intfs.c
+@@ -492,7 +492,7 @@ void rtw_stop_drv_threads(struct adapter *padapter)
+ {
+ 	rtw_stop_cmd_thread(padapter);
+ 
+-	/*  Below is to termindate tx_thread... */
++	/*  Below is to terminate tx_thread... */
+ 	complete(&padapter->xmitpriv.xmit_comp);
+ 	wait_for_completion(&padapter->xmitpriv.terminate_xmitthread_comp);
+ 
+
+---
+base-commit: 0031c06807cfa8aa51a759ff8aa09e1aa48149af
+change-id: 20260304-rtl8723bs-fix-spelling-f4601b3ef5c3
+
+Best regards,
+-- 
+Tomasz Unger <tomasz.unger@yahoo.pl>
