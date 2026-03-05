@@ -1,0 +1,44 @@
+From 80d05202d8461857420ef8ecd501ccaeac82ced7 Mon Sep 17 00:00:00 2001
+From: Tomasz Unger <tomasz.unger@yahoo.pl>
+Date: Thu, 05 Mar 2026 09:18:32 +0100
+Subject: [PATCH v2] staging: atomisp: Remove unnecessary return statement in void function
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20260305-atomisp-remove-void-return-v2-1-0fdab0c55781@yahoo.pl>
+X-Change-ID: 20260305-atomisp-remove-void-return-c6ddb36c71a9
+
+Remove redundant 'return;' at the end of void function
+ia_css_dvs_statistics_get(). Void functions do not need an explicit
+return statement at the end. No other occurrences in this file.
+
+Found with checkpatch.pl --strict.
+
+Signed-off-by: Tomasz Unger <tomasz.unger@yahoo.pl>
+---
+Changes in v2:
+- EDITME: describe what is new in this series revision.
+- EDITME: use bulletpoints and terse descriptions.
+- Link to v1: https://lore.kernel.org/r/20260305-atomisp-remove-void-return-v1-1-9f8672949f1b@yahoo.pl
+---
+ drivers/staging/media/atomisp/pci/sh_css_param_dvs.c | 1 -
+ 1 file changed, 1 deletion(-)
+
+diff --git a/drivers/staging/media/atomisp/pci/sh_css_param_dvs.c b/drivers/staging/media/atomisp/pci/sh_css_param_dvs.c
+index 9ccdb66de2df..3d2cb2d25fdb 100644
+--- a/drivers/staging/media/atomisp/pci/sh_css_param_dvs.c
++++ b/drivers/staging/media/atomisp/pci/sh_css_param_dvs.c
+@@ -269,5 +269,4 @@ ia_css_dvs_statistics_get(enum dvs_statistics_type type,
+ 		ia_css_get_dvs2_statistics(host_stats->p_dvs2_statistics_host,
+ 					   isp_stats->p_dvs_statistics_isp);
+ 	}
+-	return;
+ }
+
+---
+base-commit: 6c2f9cfe611cf4ea666b8fa1153b3c4979ea4fa0
+change-id: 20260305-atomisp-remove-void-return-c6ddb36c71a9
+
+Best regards,
+-- 
+Tomasz Unger <tomasz.unger@yahoo.pl>
